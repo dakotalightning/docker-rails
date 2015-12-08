@@ -11,9 +11,10 @@
 # Default
 #
 User.create!({
-  firstname: "Dakota",
-  lastname: "Lightning",
+  first_name: "Dakota",
+  last_name: "Lightning",
   email: "dakota@animikii.com",
-  password: "password",
-  password_confirmation: "password"
+  username: "dakotalightning",
+  password: "dakotalightning",
+  password_confirmation: "dakotalightning"
 })

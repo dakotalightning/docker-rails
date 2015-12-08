@@ -14,8 +14,9 @@
 ActiveRecord::Schema.define(version: 20151208054022) do
 
   create_table "users", force: :cascade do |t|
-    t.string   "firstname",          limit: 255, null: false
-    t.string   "lastname",           limit: 255, null: false
+    t.string   "first_name",         limit: 255, null: false
+    t.string   "last_name",          limit: 255, null: false
+    t.string   "username",           limit: 255, null: false
     t.string   "email",              limit: 255, null: false
     t.string   "encrypted_password", limit: 128, null: false
     t.string   "confirmation_token", limit: 128
@@ -23,5 +24,9 @@ ActiveRecord::Schema.define(version: 20151208054022) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
 end

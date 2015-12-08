@@ -1,0 +1,30 @@
+<%= form_for form do |user_form| %>
+  <div class="form-group">
+    <%= user_form.label :first_name %>
+    <%= user_form.text_field :first_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= user_form.label :last_name %>
+    <%= user_form.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= user_form.label :username %>
+    <%= user_form.text_field :username, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= user_form.label :email %>
+    <%= user_form.text_field :email, type: "email", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= user_form.label :password %>
+    <%= user_form.password_field :password , class: "form-control"%>
+  </div>
+
+  <div class="submit-field">
+    <%= user_form.submit class:"btn btn-primary"%>
+  </div>
+<% end %>
