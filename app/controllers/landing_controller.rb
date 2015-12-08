@@ -1,4 +1,4 @@
 class LandingController < ApplicationController
-  def view
+  def index
   end
 end
