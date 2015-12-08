@@ -1,7 +1,22 @@
 class UsersController < Clearance::UsersController
 
+  before_action :require_login, except: [:new, :create]
+
   def new
     @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      sign_in(@user)
+      flash.notice = t(".success")
+      redirect_back_or root_path
+    else
+      flash.now.alert = t(".fail")
+      render :new
+    end
   end
 
   def show
@@ -20,19 +35,6 @@ class UsersController < Clearance::UsersController
     else
       flash.now.alert = t(".fail")
       render :edit
-    end
-  end
-
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      sign_in(@user)
-      flash.notice = t(".success")
-      redirect_back_or root_path
-    else
-      flash.now.alert = t(".fail")
-      render :new
     end
   end
 
