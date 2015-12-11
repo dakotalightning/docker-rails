@@ -1,0 +1,7 @@
+FROM rails:4.2.4
+MAINTAINER Dakota Lightning <im@koda.io>
+RUN mkdir -p /var/myapp
+WORKDIR /var/myapp
+ADD . /var/myapp
+RUN bundle install
+RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
