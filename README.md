@@ -1,18 +1,10 @@
-## README
+## README - Docker version
 
 initial pull
 
   rake db:create
-  rake db:schema:load
 
-after a pull
+docker
 
-  rake db:reset
-
-all else fails
-
-  rake db:reset db:migrate
-
-or
-
-  rake db:drop db:create db:migrate
+  docker-compose build
+  docker-compose up

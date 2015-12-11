@@ -1,5 +1,3 @@
-db:
-  image: mysql
 web:
   build: .
   volumes:
@@ -8,3 +6,11 @@ web:
     - "3000:3000"
   links:
     - db
+  # reference to https://github.com/docker/compose/issues/1393 where the pid isn't removed on cleanup
+  command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+db:
+  image: mysql
+  ports:
+    - "13306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
