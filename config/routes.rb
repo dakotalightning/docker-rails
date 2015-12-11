@@ -1,4 +1,8 @@
+require 'constraints/page'
+
 Rails.application.routes.draw do
+
+  get '/:page' => 'pages#show', constraints: Constraints::Page.new, as: :page
 
   resources :passwords, only: [:create, :new]
   resource :session, except: [:destroy]
