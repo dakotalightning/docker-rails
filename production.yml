@@ -1,0 +1,61 @@
+# Our MYSQL service:
+mysql:
+  image: mysql
+  ports:
+    - "13306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    # MYSQL_DATABASE:
+
+# Our Redis service:
+redis:
+  image: redis:3.0.4
+  ports:
+    - "6379:6379" # Bind host port 6379 to Redis port 6379
+
+web: &app_base
+  # build: dakotalightning/koda-rails
+  build: .
+  volumes:
+    - .:/var/myapp
+  ports:
+    # "out/in"
+    - "3000:3000"
+  links:
+    - mysql
+    - redis
+  # reference to https://github.com/docker/compose/issues/1393 where the pid isn't removed on cleanup
+  command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
+
+  environment: &app_environment
+    # Redis Database:
+    REDIS_URL: redis
+
+    # Redis Database:
+    REDIS_URL: redis
+
+    # Sidekiq configuration:
+    SIDEKIQ_CONCURRENCY: 5
+    SIDEKIQ_TIMEOUT: 10
+
+    # Run the app in the 'development' environment:
+    RACK_ENV: development
+    RAILS_ENV: development
+  env_file: .env # Include the environment variables in the unversioned .env file
+
+# worker:
+#   <<: *app_base
+#   ports: []
+#   command: sidekiq -c 25 -q default
+
+# App Guard: Keeps running tests on a separate process:
+test:
+  <<: *app_base # We copy from &app_base, and override:
+  ports: []
+  command: guard start --no-bundler-warning --no-interactions
+  environment:
+    <<: *app_environment
+
+    # Run the app in the 'test' environment, instead of the default 'developent'
+    RACK_ENV: test
+    RAILS_ENV: test

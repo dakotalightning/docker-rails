@@ -1,10 +1,11 @@
 ## README - Docker version
 
-initial pull
+run
+> you only need to run this once
 
-  rake db:create
+    $ ./setup.sh
 
-docker
+after any changes use
 
-  docker-compose build
-  docker-compose up
+    docker-compose build
+    docker-compose up

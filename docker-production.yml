@@ -1,0 +1,23 @@
+db:
+  image: mysql
+  ports:
+    - "13306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+
+web:
+  # build: dakotalightning/koda-rails
+  image: dakotalightning/koda-rails
+  ports:
+    # "out/in"
+    - "80:3000"
+  links:
+    - db
+  command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
+  environment:
+    SECRET_KEY_BASE: fdea18ac839a1607fe8193fefb8b23
+    CONFIG_ASSETS_COMPILE: false
+    CONFIG_ASSETS_DIGEST: true
+    CONFIG_LOG_LEVEL: :debug
+    CONFIG_ASSETS_JS_COMPRESSOR: :uglifier
+    # RAILS_SERVE_STATIC_FILES: ENV['RAILS_SERVE_STATIC_FILES'].present?

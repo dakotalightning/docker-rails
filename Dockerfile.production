@@ -1,0 +1,15 @@
+FROM ruby:2.2.3
+MAINTAINER Dakota Lightning <im@koda.io>
+RUN apt-get update -qq && apt-get install -y build-essential nodejs libpq-dev
+RUN mkdir -p /var/myapp
+WORKDIR /var/myapp
+COPY . /var/myapp
+
+RUN bundle install
+RUN rake assets:precompile --trace
+
+# Run the app in production mode by default:
+ENV RAILS_ENV=production
+
+# Specify the default container command:
+CMD ["rails s puma -b 0.0.0.0"]
