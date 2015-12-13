@@ -11,9 +11,6 @@
 
 # Ignore the docker-compose project files:
 docker-compose.yml
-first_time_setup.sh
 docker-production.yml
-Dockerfile-rails
 Dockerfile.production
-production.yml
 setup.sh
