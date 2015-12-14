@@ -7,7 +7,7 @@ db:
 
 web:
   # build: dakotalightning/koda-rails
-  image: dakotalightning/koda-rails
+  image: dakotalightning/docker-rails
   ports:
     # "out/in"
     - "80:3000"
