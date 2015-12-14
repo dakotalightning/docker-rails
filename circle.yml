@@ -5,7 +5,7 @@ machine:
 dependencies:
   pre:
     - sudo pip install docker-compose
-    - docker-compose up -d -f ./docker-production.yml
+    - docker-compose -f ./docker-production.yml up -d 
 
 # test:
   # pre:
