@@ -5,6 +5,18 @@ db:
   environment:
     MYSQL_ROOT_PASSWORD: root
 
+redis:
+  image: redis
+  ports:
+    - "6379:6379"
+
+nginx:
+  build: ./nginx
+  links:
+    - web
+  ports:
+    - "80"
+
 web:
   # build: dakotalightning/koda-rails
   build: .
@@ -12,8 +24,9 @@ web:
     - .:/var/myapp
   ports:
     # "out/in"
-    - "80:3000"
+    - "8080:3000"
   links:
     - db
+    - redis
   # reference to https://github.com/docker/compose/issues/1393 where the pid isn't removed on cleanup
   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
