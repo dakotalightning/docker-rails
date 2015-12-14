@@ -1,0 +1,41 @@
+#!/bin/bash
+
+if [ -z "`which docker`" ]; then
+  echo "Docker not installed"
+  exit 1
+fi
+
+if [ -z "`which docker-compose`" ]; then
+  echo "docker compose not installed"
+  exit 1
+fi
+
+if [ "$ACTION" = "deploy" ]; then
+  set -e
+
+  echo "Clearing containers"
+  docker-compose rm -f
+
+  echo "building up web"
+  docker-compose build web
+
+  echo "building up nginx"
+  docker-compose build nginx
+
+  echo "setting up containers"
+  docker-compose up --no-deps -d web
+  docker-compose up --no-deps -d nginx
+  docker-compose stop
+
+  echo "Update web image"
+  echo " -> pushing $IMAGE"
+  docker push web
+
+  echo "Update nginx image"
+  echo " -> pushing $IMAGE"
+  docker push nginx
+
+else
+  echo "Unknown action $ACTION"
+  exit 1
+fi
