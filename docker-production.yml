@@ -16,3 +16,4 @@ web:
   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
   environment:
     SECRET_KEY_BASE: fdea18ac839a1607fe8193fefb8b23
+    RAILS_SERVE_STATIC_FILES: 'false'
