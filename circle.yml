@@ -3,11 +3,10 @@ machine:
     - docker
 
 dependencies:
-  override:
-    - sudo pip install docker-compose
-
-test:
   pre:
+    - pip install docker-compose
     - docker-compose up -d -f ./docker-production.yml
+
+# test:
   # pre:
   #   - docker-compose run -d web
