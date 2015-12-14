@@ -4,11 +4,10 @@ machine:
 
 dependencies:
   override:
-    - sudo pip install -U docker-compose
+    - pip install docker-compose
 
 test:
   pre:
-    - docker-compose pull
-    - docker-compose up -d
-  override:
-    - docker-compose run -d web
+    - docker-compose up -d -f ./docker-production.yml
+  # pre:
+  #   - docker-compose run -d web
