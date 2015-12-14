@@ -19,7 +19,6 @@ nginx:
     - "443:443"
 
 web:
-  # build: dakotalightning/koda-rails
   build: .
   volumes:
     - .:/var/myapp
