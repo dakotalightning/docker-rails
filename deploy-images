@@ -16,11 +16,11 @@ if [ "$ACTION" = "deploy" ]; then
   echo "Clearing containers"
   docker-compose rm -f
 
-  echo "building up web"
-  docker-compose build web
+  echo "building up web production image"
+  docker build -t dakotalightning/koda-rails -f ./web/Dockerfile.production ./web
 
-  echo "building up nginx"
-  docker-compose build nginx
+  echo "building up nginx production image"
+  docker build -t dakotalightning/nginx ./nginx
 
   echo "setting up containers"
   docker-compose up --no-deps -d web

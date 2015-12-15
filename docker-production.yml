@@ -11,13 +11,12 @@ redis:
     - "6379:6379"
 
 nginx:
-  build: ./nginx
+  build: dakotalightning/nginx
   links:
     - web
   ports:
     - "80:80"
     - "443:443"
-
 
 web:
   image: dakotalightning/docker-rails

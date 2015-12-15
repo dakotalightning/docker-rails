@@ -19,9 +19,9 @@ nginx:
     - "443:443"
 
 web:
-  build: .
+  build: ./web
   volumes:
-    - .:/var/myapp
+    - ./web:/var/myapp
   ports:
     # "out/in"
     - "3000:3000"

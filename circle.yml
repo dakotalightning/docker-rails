@@ -9,4 +9,4 @@ dependencies:
 
 test:
   override:
-    - docker-compose -f ./docker-production.yml up -d
+    - docker-compose -f ./web/docker-production.yml up -d

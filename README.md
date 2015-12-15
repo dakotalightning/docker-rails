@@ -17,7 +17,7 @@ After any changes to the `Dockerfile`
     docker-compose build
     docker-compose up
 
-*check your docker-machine ip `docker-machine ip default` used to acces the container locally*
+*check your docker-machine ip `docker-machine env default` used to access the container locally*
 
 when ready to push to production, create the production image
 
