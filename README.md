@@ -48,7 +48,7 @@ This is what I did for [digitalocean.com](http://digitalocean.com) I'm not sure 
 
 		docker-compose run --name rake --rm web rake db:setup
 
-    *from my understanding you want to use `--rm` flag when running `docker-compose run`. Evey `run` will start up a new container ex: `web_run_1` `web_run_2` `web_run_3` etc.*
+    *from my understanding you want to use `--rm` flag when running `docker-compose run`. Every `run` will start up a new container ex: `web_run_1` `web_run_2` `web_run_3` etc.*
 
 5. `ctrl+c` to stop the containers
 6. run `docker-compose start` to start the containers in the background

@@ -29,8 +29,8 @@ if [ "$ACTION" = "deploy" ]; then
   docker pull dakotalightning/docker-rails
 
   echo " -> Starting containers"
-  docker-compoe up -d
-  docker-compoe ps
+  docker-compose up -d
+  docker-compose ps
   docer ps
 
 else
