@@ -31,7 +31,7 @@ if [ "$ACTION" = "deploy" ]; then
   echo " -> Starting containers"
   docker-compose up -d
   docker-compose ps
-  docer ps
+  docker ps
 
 else
   echo "${red} Unknown action $ACTION${reset}"
