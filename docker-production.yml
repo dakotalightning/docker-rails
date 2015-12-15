@@ -11,7 +11,7 @@ redis:
     - "6379:6379"
 
 nginx:
-  build: dakotalightning/docker-nginx
+  image: dakotalightning/docker-nginx
   links:
     - web
   ports:
