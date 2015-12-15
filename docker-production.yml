@@ -11,7 +11,7 @@ redis:
     - "6379:6379"
 
 nginx:
-  build: dakotalightning/nginx
+  build: dakotalightning/docker-nginx
   links:
     - web
   ports:
@@ -29,5 +29,6 @@ web:
   # reference to https://github.com/docker/compose/issues/1393 where the pid isn't removed on cleanup
   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
   environment:
+    RAILS_ENV: production
     SECRET_KEY_BASE: fdea18ac839a1607fe8193fefb8b23
     RAILS_SERVE_STATIC_FILES: 'false'
