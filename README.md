@@ -1,7 +1,7 @@
 ## README - Docker version
 ![circleci](https://circleci.com/gh/dakotalightning/docker-rails.svg?style=shield&circle-token=:circle-token)
 
-example is at [rails.koda.io](http://rails.koda.io/) using [digitalocean.com](http://digitalocean.com) and repo [docker.io/dakotalightning/docker-rails](https://hub.docker.com/r/dakotalightning/docker-rails/)
+Example is at [rails.koda.io](http://rails.koda.io/) using [digitalocean.com](http://digitalocean.com) and repo [docker.io/dakotalightning/docker-rails](https://hub.docker.com/r/dakotalightning/docker-rails/)
 
 ### Docker requirement
 *If you don't have docker on your local machine [get started](https://docs.docker.com/mac/started/) is a good place to start.
@@ -28,7 +28,7 @@ push the image to a repo, I'm using [docker.io](https://hub.docker.com/r/dakotal
     docker push dakotalightning/koda-rails
 
 ## server flow
-this is what i did for [digitalocean.com](http://digitalocean.com) im not sure if it is the right way, it works
+This is what I did for [digitalocean.com](http://digitalocean.com) I'm not sure if it is the right way, it works
 *I'm looking into it this ...*
 
 1. ssh into the server droplet
@@ -60,8 +60,10 @@ this is what i did for [digitalocean.com](http://digitalocean.com) im not sure i
 		root_web_1   bash -c rm -f tmp/pids/ser ...   Up      0.0.0.0:80->3000/tcp  
 8. go to the url of the droplet provided on digitalocean
 
-##
+## notes
 
     deploy-images | bash -s
+
+this will be worked into job somwhere?
 
     curl -sSL https://raw.githubusercontent.com/dakotalightning/docker-rails/master/deploy-server | bash -s

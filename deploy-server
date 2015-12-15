@@ -21,7 +21,7 @@ if [ "$ACTION" = "deploy" ]; then
 
   echo "Pulling production docker-compose.yml"
   echo "================================================="
-  wgt https://raw.githubusercontent.com/dakotalightning/docker-rails/master/docker-production.yml -O docker-compose.yml
+  wget https://raw.githubusercontent.com/dakotalightning/docker-rails/master/docker-production.yml -O docker-compose.yml
 
   echo " -> Pulling images"
   echo "================================================="
