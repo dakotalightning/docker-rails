@@ -1,7 +1,7 @@
 ## README - Docker version
 ![circleci](https://circleci.com/gh/dakotalightning/docker-rails.svg?style=shield&circle-token=:circle-token)
 
-example is at [rails.koda.io](http://rails.koda.io/) using [digitalocean.com](http://digitalocean.com) and repo [docker.io/dakotalightning/koda-rails](https://hub.docker.com/r/dakotalightning/koda-rails/)
+example is at [rails.koda.io](http://rails.koda.io/) using [digitalocean.com](http://digitalocean.com) and repo [docker.io/dakotalightning/docker-rails](https://hub.docker.com/r/dakotalightning/docker-rails/)
 
 ### Docker requirement
 *If you don't have docker on your local machine [get started](https://docs.docker.com/mac/started/) is a good place to start.
@@ -23,7 +23,7 @@ when ready to push to production, create the production image
 
     $ docker build -t dakotalightning/koda-rails -f Dockerfile.production .
 
-push the image to a repo, im using [docker.io](https://hub.docker.com/r/dakotalightning/koda-rails/) since its free for public repositories
+push the image to a repo, I'm using [docker.io](https://hub.docker.com/r/dakotalightning/docker-rails/) since its free for public repositories
 
     docker push dakotalightning/koda-rails
 
@@ -59,3 +59,9 @@ this is what i did for [digitalocean.com](http://digitalocean.com) im not sure i
 		root_db_1    /entrypoint.sh mysqld            Up      0.0.0.0:13306->3306/tcp
 		root_web_1   bash -c rm -f tmp/pids/ser ...   Up      0.0.0.0:80->3000/tcp  
 8. go to the url of the droplet provided on digitalocean
+
+##
+
+    deploy-images | bash -s
+
+    curl -sSL https://raw.githubusercontent.com/dakotalightning/docker-rails/master/deploy-server | bash -s

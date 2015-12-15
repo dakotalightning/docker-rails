@@ -1,41 +1,49 @@
 #!/bin/bash
 
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
 if [ -z "`which docker`" ]; then
-  echo "Docker not installed"
+  echo "${red}Docker not installed${reset}"
   exit 1
 fi
 
 if [ -z "`which docker-compose`" ]; then
-  echo "docker compose not installed"
+  echo "${red}Docker Compose not installed${reset}"
   exit 1
 fi
+
+ACTION=${ACTION:-deploy}
 
 if [ "$ACTION" = "deploy" ]; then
   set -e
 
-  echo "Clearing containers"
+  echo "${green}Clearing containers${reset}"
+  echo "${green}=================================================${reset}"
   docker-compose rm -f
 
-  echo "building up web production image"
-  docker build -t dakotalightning/koda-rails -f ./web/Dockerfile.production ./web
+  echo "${green}Update nginx${reset}"
+  echo "${green} ----> Building nginx production image${reset}"
+  echo "${green}=================================================${reset}"
+  docker build -t dakotalightning/docker-nginx ./nginx
 
-  echo "building up nginx production image"
-  docker build -t dakotalightning/nginx ./nginx
+  echo "${green} ----> Pushing nginx${reset}"
+  echo "${green}=================================================${reset}"
+  docker push dakotalightning/docker-nginx
 
-  echo "setting up containers"
-  docker-compose up --no-deps -d web
-  docker-compose up --no-deps -d nginx
-  docker-compose stop
+  echo "${green}Update web${reset}"
+  echo "${green} ----> Building web production image${reset}"
+  echo "${green}=================================================${reset}"
+  docker build -t dakotalightning/docker-rails -f ./web/Dockerfile.production ./web
 
-  echo "Update web image"
-  echo " -> pushing $IMAGE"
-  docker push web
+  echo "${green} ----> Pushing web${reset}"
+  echo "${green}=================================================${reset}"
+  docker push dakotalightning/docker-rails
 
-  echo "Update nginx image"
-  echo " -> pushing $IMAGE"
-  docker push nginx
-
+  echo "${green} ----> Images updated ${reset}"
+  echo "${green}=================================================${reset}"
 else
-  echo "Unknown action $ACTION"
+  echo "${red} Unknown action $ACTION${reset}"
   exit 1
 fi

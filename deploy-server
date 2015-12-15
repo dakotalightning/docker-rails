@@ -6,50 +6,34 @@ if [ -z "`which docker`" ]; then
 fi
 
 if [ -z "`which docker-compose`" ]; then
-  echo "docker compose not installed"
+  echo "Docker Compose not installed"
   exit 1
 fi
 
-IMAGE=${IMAGE:-dakotalightning/docker-rails:latest}
 ACTION=${ACTION:-deploy}
-PREFIX=${PREFIX:-dakotalightning}
 
 SERVER_PROTOCOL=http
 SERVER_PORT=${PORT:-8080}
 SERVER_IP=${IP}
 
-get_ip() {
-  if [ -z "$SHIPYARD_IP" ]; then
-    SERVER_IP=`docker run --rm --net=host default ip route get 8.8.8.8 | awk '{ print $7;  }'`
-  fi
-}
-
-wait_for_available() {
-  echo Waiting for Shipyard on $IP:$PORT
-
-  until $(docker-compose something); do
-      printf '.'
-      sleep 1
-  done
-  printf '\n'
-}
-
 if [ "$ACTION" = "deploy" ]; then
   set -e
 
   echo "Pulling production docker-compose.yml"
+  echo "================================================="
   wgt https://raw.githubusercontent.com/dakotalightning/docker-rails/master/docker-production.yml -O docker-compose.yml
 
-  echo "Upgrading image"
-  echo " -> Pulling $IMAGE"
-  docker pull $IMAGE
+  echo " -> Pulling images"
+  echo "================================================="
+  docker pull dakotalightning/docker-nginx
+  docker pull dakotalightning/docker-rails
 
   echo " -> Starting containers"
-  start_controller
-
-  wait_for_available
+  docker-compoe up -d
+  docker-compoe ps
+  docer ps
 
 else
-  echo "Unknown action $ACTION"
+  echo "${red} Unknown action $ACTION${reset}"
   exit 1
 fi
