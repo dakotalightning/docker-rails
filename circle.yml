@@ -10,4 +10,4 @@ dependencies:
 test:
   override:
   - docker-compose -f docker-production.yml up -d web
-  - RACK_ENV=test bundle exec rake db:create db:schema:load --trace
+  - docker-compose run web RACK_ENV=test bundle exec rake db:create db:schema:load --trace
