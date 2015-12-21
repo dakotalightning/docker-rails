@@ -24,3 +24,9 @@ Page.create!({
   content: "Marzipan sugar plum cake brownie. Dragée cookie tart carrot cake. Biscuit lollipop carrot cake jujubes. Toffee liquorice bonbon candy canes cookie. Halvah chupa chups cotton candy. Jujubes sweet dragée dragée bear claw. Sweet cake liquorice donut brownie wafer. Wafer halvah dragée topping caramels sesame snaps liquorice. Lollipop gingerbread cake muffin cheesecake jelly beans tiramisu sweet roll.
   Powder topping caramels candy cheesecake dessert. Oat cake cupcake toffee marzipan cake chupa chups. Bear claw sweet cake."
 })
+
+Page.create!({
+  title: "Contact",
+  content: "Marzipan sugar plum cake brownie. Dragée cookie tart carrot cake. Biscuit lollipop carrot cake jujubes. Toffee liquorice bonbon candy canes cookie. Halvah chupa chups cotton candy. Jujubes sweet dragée dragée bear claw. Sweet cake liquorice donut brownie wafer. Wafer halvah dragée topping caramels sesame snaps liquorice. Lollipop gingerbread cake muffin cheesecake jelly beans tiramisu sweet roll.
+  Powder topping caramels candy cheesecake dessert. Oat cake cupcake toffee marzipan cake chupa chups. Bear claw sweet cake."
+})

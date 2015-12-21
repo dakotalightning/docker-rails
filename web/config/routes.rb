@@ -2,6 +2,17 @@ require 'constraints/page'
 
 Rails.application.routes.draw do
 
+  namespace :admin do
+
+    get 'login' => 'sessions#new', as: :signin
+    delete 'logout' => 'sessions#destroy', as: :signout
+
+    resources :pages, except: [:show]
+
+    root to: 'base#dashboard'
+
+  end
+
   get '/:page' => 'pages#show', constraints: Constraints::Page.new, as: :page
 
   resources :passwords, only: [:create, :new]
@@ -11,9 +22,7 @@ Rails.application.routes.draw do
     resource :password, only: [:create, :edit, :update]
   end
 
-  get 'log_in' => 'sessions#new', as: :sign_in
-  delete 'log_out' => 'sessions#destroy', as: :sign_out
-  get 'sign_up' => 'users#new', as: :sign_up
+  # get 'signup' => 'users#new', as: :signup
 
   root 'landing#index'
 
