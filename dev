@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo " -> Starting containers"
+docker-compose up -d
+docker-compose ps
+
+read -t 20 -p "Waiting 20 seconds for the mysql container to finish initializing (Hit ENTER to continue right away)"
+echo " - Continuing with app database setup:"
+
+echo " -> Reseting database"
+echo "================================================="
+docker-compose run --rm web rake db:drop && rake db:create && rake db:migrate
