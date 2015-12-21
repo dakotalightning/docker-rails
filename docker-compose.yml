@@ -22,9 +22,9 @@ web:
   build: ./web
   volumes:
     - ./web:/var/myapp
-  # ports:
-  #   # "out/in"
-  #   - "3000:3000"
+  ports:
+    # "out/in"
+    - "3000:3000"
   links:
     - db
     - redis
