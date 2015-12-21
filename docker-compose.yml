@@ -22,11 +22,13 @@ web:
   build: ./web
   volumes:
     - ./web:/var/myapp
-  ports:
-    # "out/in"
-    - "3000:3000"
+  # ports:
+  #   # "out/in"
+  #   - "3000:3000"
   links:
     - db
     - redis
   # reference to https://github.com/docker/compose/issues/1393 where the pid isn't removed on cleanup
   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
+  environment:
+    RAILS_IP: 172.17.0.5
