@@ -19,7 +19,11 @@ class User < ActiveRecord::Base
   # Instance Methods
   #
   def display_name
-    #{ first_name } #{ last_name }"
+    "#{first_name} #{last_name}"
+  end
+
+  def to_param
+    self.username
   end
 
 end

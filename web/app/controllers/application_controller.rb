@@ -15,13 +15,4 @@ class ApplicationController < ActionController::Base
     )
   end
 
-
-private
-
-  def require_admin
-    unless signed_in?
-      deny_access
-    end
-  end
-
 end

@@ -1,5 +1,7 @@
 class SessionsController < Clearance::SessionsController
 
+  skip_before_action :set_return_to
+
 private
   def url_after_destroy
     root_path
