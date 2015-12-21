@@ -56,8 +56,10 @@ This is what I did for [digitalocean.com](http://digitalocean.com) I'm not sure 
 
 		   Name                 Command               State            Ports          
 		-----------------------------------------------------------------------------
-		root_db_1    /entrypoint.sh mysqld            Up      0.0.0.0:13306->3306/tcp
-		root_web_1   bash -c rm -f tmp/pids/ser ...   Up      0.0.0.0:80->3000/tcp  
+    dockerrails_db_1      /entrypoint.sh mysqld            Up      0.0.0.0:13306->3306/tcp                  
+    dockerrails_nginx_1   nginx -g daemon off;             Up      0.0.0.0:443->443/tcp, 0.0.0.0:80->80/tcp
+    dockerrails_redis_1   /entrypoint.sh redis-server      Up      0.0.0.0:6379->6379/tcp                   
+    dockerrails_web_1     bash -c rm -f tmp/pids/ser ...   Up      0.0.0.0:3000->3000/tcp                   
 8. go to the url of the droplet provided on digitalocean
 
 ## notes
