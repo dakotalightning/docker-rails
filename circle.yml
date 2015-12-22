@@ -17,8 +17,8 @@ test:
     - docker-compose stop
     - docker-compose -f ./docker-production.yml up -d; sleep 20
     - docker-compose ps
-    - docker-compose -f ./docker-production.yml run --rm web bundle exec rake db:create db:schema:load RAILS_ENV=test --trace
-    - docker-compose -f ./docker-production.yml run --rm web bundle exec rake db:create db:schema:load RAILS_ENV=production --trace
+    - docker-compose -f ./docker-production.yml run web bundle exec rake db:create db:schema:load RAILS_ENV=test --trace
+    - docker-compose -f ./docker-production.yml run web bundle exec rake db:create db:schema:load RAILS_ENV=production --trace
     - curl --retry 10 --retry-delay 5 -v http://localhost
 
 deployment:
