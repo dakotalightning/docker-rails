@@ -64,6 +64,19 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  # Production mailer configuration
+  config.action_mailer.smtp_settings = {
+    address: "smtp.mandrillapp.com",
+    port: 587,
+    domain: "koda.io",
+    user_name: Rails.application.secrets.mailer_username,
+    password: Rails.application.secrets.mailer_password,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = { host: "koda.io" }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -76,4 +89,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Send emails when exceptions occurr on production.
+  Rails.application.config.middleware.use(
+    ExceptionNotification::Rack,
+    email: {
+      email_prefix: "[#{ Rails.application.class.parent_name }-#{ Rails.env }] ",
+      sender_address: "mailer@koda.io",
+      exception_recipients: %w[dev.alerts@koda.io]
+    }
+  )
 end

@@ -3,7 +3,8 @@ db:
   ports:
     - "13306:3306"
   environment:
-    MYSQL_ROOT_PASSWORD: <MYSQL_ROOT_PASSWORD>
+    # change this on production
+    MYSQL_ROOT_PASSWORD: root
 
 redis:
   image: redis
@@ -30,5 +31,8 @@ web:
   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
   environment:
     RAILS_ENV: production
-    SECRET_KEY_BASE: <SECRET_KEY_BASE>
+    # used for testing purposes
+    SECRET_KEY_BASE: key
     RAILS_SERVE_STATIC_FILES: 'false'
+    MAILER_USERNAME: username
+    MAILER_PASSWORD: apikey
