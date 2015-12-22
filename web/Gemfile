@@ -47,6 +47,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# used for the editor on pages
+gem 'redcarpet'
+gem 'coderay'
+
 # Use clearance for user authentication
 gem 'clearance'
 
