@@ -5,4 +5,3 @@ RUN mkdir -p /var/myapp
 WORKDIR /var/myapp
 COPY . /var/myapp
 RUN bundle install
-RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
