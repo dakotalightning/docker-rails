@@ -69,3 +69,8 @@ This is what I did for [digitalocean.com](http://digitalocean.com) I'm not sure 
 this will be worked into job somwhere?
 
     curl -sSL https://raw.githubusercontent.com/dakotalightning/docker-rails/master/deploy-server | bash -s
+
+## testing
+
+  - circle ci for testing and deployment of images
+  - webhook? to deploy bot to pull new images and set new container?
