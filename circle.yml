@@ -12,6 +12,8 @@ dependencies:
 test:
   override:
     - cat ./docker-production.yml
+    - docker-compose ps
+    - docker-compose stop
     - docker-compose -f ./docker-production.yml up -d; sleep 20
     - docker-compose -f ./docker-production.yml run --rm web bundle exec rake db:create db:schema:load RAILS_ENV=test --trace
     - docker-compose -f ./docker-production.yml run --rm web bundle exec rake db:create db:schema:load RAILS_ENV=production --trace
