@@ -1,10 +1,14 @@
 #!/bin/bash
+echo "Clearing containers"
+docker-compose rm -f
 
 echo " -> Starting containers"
 docker-compose up -d; sleep 20
 
 echo " - Continuing with app database setup:"
-
 echo " -> Reseting database"
 echo "================================================="
-docker-compose run --rm web rake db:drop && rake db:create && rake db:migrate
+docker-compose run --rm web rake db:setup
+
+echo "================================================="
+docker-compose ps
