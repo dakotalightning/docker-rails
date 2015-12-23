@@ -1,6 +1,9 @@
 class Admin::UsersController < Admin::BaseController
 
+  before_action :require_login, except: [:new, :create]
+
   def index
+    @users = User.all
   end
 
   def new
