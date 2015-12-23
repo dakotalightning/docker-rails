@@ -20,7 +20,7 @@ private
   end
 
   def url_after_denied_access_when_signed_out
-    admin_sign_in_path
+    admin_signin_path
   end
 
 end
