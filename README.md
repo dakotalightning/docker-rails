@@ -1,5 +1,6 @@
 ## README - Docker version
-![circleci](https://circleci.com/gh/dakotalightning/docker-rails.svg?style=shield&circle-token=:circle-token)
+[![circleci](https://circleci.com/gh/dakotalightning/docker-rails.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/dakotalightning/docker-rails)
+[![Deployment status from DeployBot](https://nldstudio.deploybot.com/badge/13023224030748/58127.svg)](http://deploybot.com)
 
 Example is at [rails.koda.io](http://rails.koda.io/) using [digitalocean.com](http://digitalocean.com) and repo [docker.io/dakotalightning/docker-rails](https://hub.docker.com/r/dakotalightning/docker-rails/)
 
