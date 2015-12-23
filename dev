@@ -1,14 +1,18 @@
 #!/bin/bash
-echo "Clearing containers"
+
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+echo "${green}Clearing containers${reset}"
 docker-compose rm -f
 
-echo " -> Starting containers"
+echo "${green} --> Starting containers${reset}"
 docker-compose up -d; sleep 20
 
-echo " - Continuing with app database setup:"
-echo " -> Reseting database"
-echo "================================================="
+echo "${green}Continuing with app database setup${reset}"
+echo "${green} --> Reseting database${reset}"
+echo "${green}====================================================================${reset}"
 docker-compose run --rm web rake db:setup
 
-echo "================================================="
+echo "${green}====================================================================${reset}"
 docker-compose ps
