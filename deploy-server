@@ -19,14 +19,14 @@ SERVER_IP=${IP}
 if [ "$ACTION" = "deploy" ]; then
   set -e
 
-  echo "Pulling production docker-compose.yml"
-  echo "================================================="
-  wget https://raw.githubusercontent.com/dakotalightning/docker-rails/master/docker-production.yml -O docker-compose.yml
-
   echo " -> Pulling images"
-  echo "================================================="
+  echo "=================================================================="
   docker pull dakotalightning/docker-nginx
   docker pull dakotalightning/docker-rails
+
+  echo "Pulling production docker-compose.yml"
+  echo "=================================================================="
+  wget https://raw.githubusercontent.com/dakotalightning/docker-rails/master/docker-production.yml -O docker-compose.yml
 
   echo " -> Starting containers"
   docker-compose up -d

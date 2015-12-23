@@ -1,0 +1,29 @@
+DOCKER_HUB_USER="dakotalightning"
+DOCKER_COMPOSE_IMAGE="projectname_web_1"
+APP_IMAGE="docker-rails"
+REMOTE_IMAGE=${DOCKER_HUB_USER}/${APP_IMAGE}
+IMAGE_TAG=$(date -u +"%Y-%m-%dT%H:%M:%SZ" |sed 's/-\|:/_/g')
+TAGGED_IMAGE=${REMOTE_IMAGE}:${IMAGE_TAG}
+LATEST_IMAGE=${REMOTE_IMAGE}:latest
+
+build_image () {
+    echo "Building image: ${TAGGED_IMAGE}"
+    docker-compose build web
+}
+
+push_tagged_image () {
+    echo ${TAGGED_IMAGE}
+    # change docker-compose image tag for a nicer one
+    docker tag ${DOCKER_COMPOSE_IMAGE} ${TAGGED_IMAGE}
+    # push image out to docker hub
+    docker push ${TAGGED_IMAGE} && echo "${TAGGED_IMAGE} image pushed to docker hub" \
+    || echo "Failed to push ${TAGGED_IMAGE} image to docker hub"
+}
+
+push_latest_image () {
+    echo ${LATEST_IMAGE}
+    # push image out to docker hub
+    docker tag ${TAGGED_IMAGE} ${LATEST_IMAGE}
+    docker push ${LATEST_IMAGE} && echo "${LATEST_IMAGE} image pushed to docker hub" \
+    || echo "Failed to push ${LATEST_IMAGE} image to docker hub"
+}
