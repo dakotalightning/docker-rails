@@ -45,6 +45,7 @@
               <li>
                 <%= link_to "Profile", admin_user_path(current_user) %>
               </li>
+              <li><%= link_to "Sign Out", admin_signout_path, method: :delete %></li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->
