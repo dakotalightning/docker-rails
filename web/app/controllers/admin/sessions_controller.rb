@@ -15,7 +15,7 @@ private
   end
 
   def url_after_create
-    admin_signin_path
+    admin_users_path
   end
 
 end

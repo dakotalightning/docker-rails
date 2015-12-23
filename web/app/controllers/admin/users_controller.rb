@@ -15,29 +15,29 @@ class Admin::UsersController < Admin::BaseController
 
     if @user.save
       sign_in(@user)
-      flash.notice = t(".success")
+      flash.notice = "Yay it worked."
       redirect_back_or root_path
     else
-      flash.now.alert = t(".fail")
+      flash.now.alert = "Fail! Something went wrong."
       render :new
     end
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by(username: params[:id])
 
     if @user.update_attributes(user_params)
-      redirect_to user_path(@user), notice: t(".success")
+      redirect_to admin_user_path(@user), notice: "Yay it worked."
     else
-      flash.now.alert = t(".fail")
+      flash.now.alert = "Fail! Something went wrong."
       render :edit
     end
   end
