@@ -5,6 +5,8 @@ db:
   environment:
     # change this on production
     MYSQL_ROOT_PASSWORD: root
+  # volumes:
+  #   - ./database/mysql:/var/lib/mysql
 
 # redis:
 #   image: redis
