@@ -13,7 +13,7 @@
 User.create!({
   first_name: "Dakota",
   last_name: "Lightning",
-  email: "dakota@animikii.com",
+  email: "dakota@koda.io",
   username: "dakotalightning",
   password: "dakotalightning",
   password_confirmation: "dakotalightning"
