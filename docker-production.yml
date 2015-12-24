@@ -8,10 +8,10 @@ db:
   # volumes:
   #   - ./database/mysql:/var/lib/mysql
 
-# redis:
-#   image: redis
-#   ports:
-#     - "6379:6379"
+redis:
+  image: redis
+  ports:
+    - "6379:6379"
 
 nginx:
   image: dakotalightning/docker-nginx
@@ -28,7 +28,7 @@ web:
     - "3000:3000"
   links:
     - db
-    # - redis
+    - redis
   # reference to https://github.com/docker/compose/issues/1393 where the pid isn't removed on cleanup
   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s puma -b 0.0.0.0"
   environment:
